@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add task</title>
+    <link rel="stylesheet" href="../static/css/main_styles.css" th:href="@{/css/main_styles.css}"/>
+</head>
+<body>
+<p><a href="/" class="button big-button button-red">Main page</a>
+<a href="/users" class="button big-button button-blue">Users</a>
+<a href="/tasks" class="button big-button button-green">Tasks</a>
+<a href="/logout" class="button big-button button-black">Logout</a></p>
+
+<form name="test" method="post" action="#" th:action="@{/tasks/add}" th:object="${taskRequest}">
+    <p><b>User</b><br>
+        <select size="2" multiple name="user[]" th:field="*{userId}">
+            <option th:value="${user.getId()}" th:each="user, iterStat : ${users}"><td th:text="${user.getName()}"></td></option>
+        </select>
+    </p>
+    <p><b>Title</b><br>
+        <input type="text" size="40" th:field="*{title}">
+    </p>
+    <p>Description<Br>
+        <textarea name="comment" cols="40" rows="3" th:field="*{description}"></textarea></p>
+    <p><b>Task status</b><Br>
+        <input type="radio" name="taskStatus" value="0" th:field="*{taskStatusId}"> Not started<Br>
+        <input type="radio" name="taskStatus" value="1" th:field="*{taskStatusId}"> In progress<Br>
+        <input type="radio" name="taskStatus" value="2" th:field="*{taskStatusId}"> Completed<Br>
+    </p>
+    <p>Due date/time<Br>
+        <input name="dueDateTime" type="datetime-local" th:field="*{dueDateTime}"/></p>
+    <p><input type="submit" value="Отправить">
+        <input type="reset" value="Очистить"></p>
+</form>
+<p><a href="/tasks/" class="button button-green">Cancel</a></p>
+</body>
+</html>

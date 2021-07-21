@@ -1,0 +1,48 @@
+body {
+    padding: 10px;
+    display: block;
+}
+
+a.button {
+     display: inline-block;
+     color: white;
+     padding: 12px;
+     border-radius: 3px;
+     text-decoration: none;
+     font-family: Tahoma;
+     font-size: 18px;
+     line-height: 1;
+     font-weight: 100;
+ }
+
+a.button-red {
+    background-color: red;
+}
+
+a.button-green {
+    background-color: green;
+}
+
+a.button-blue {
+    background-color: blue;
+}
+
+a.button-black {
+    background-color: black;
+}
+
+a.little-button {
+    padding: 6px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+a.big-button {
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 32px;
+}
+
+a.active_button {
+    color: aqua;
+}

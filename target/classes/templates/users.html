@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="../static/css/main_styles.css" th:href="@{/css/main_styles.css}"/>
+    <style type="text/css">
+        TABLE, TH, TD {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<p><a href="/" class="button big-button button-red">Main page</a>
+<a href="/users" class="button big-button button-blue active_button">Users</a>
+<a href="/tasks" class="button big-button button-green">Tasks</a>
+<a href="/logout" class="button big-button button-black">Logout</a></p>
+
+<table style="text-align:center">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>RoleName</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="role, iterStat : ${roles}"
+        th:style="${iterStat.odd}? 'font-weight: bold;'">
+        <td th:text="${role.getId()}"></td>
+        <td th:text="${role.getRoleName()}"></td>
+    </tr>
+    </tbody>
+</table>
+<table style="text-align:center">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user, iterStat : ${users}"
+        th:style="${iterStat.odd}? 'font-weight: bold;'">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${userRoles.get(user.getId())}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

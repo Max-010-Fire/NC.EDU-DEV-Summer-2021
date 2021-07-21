@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="../static/css/main_styles.css" th:href="@{/css/main_styles.css}"/>
+</head>
+<body>
+<p><a href="/" class="button big-button button-red">Main page</a>
+<a href="/users" class="button big-button button-blue">Users</a>
+<a href="/tasks" class="button big-button button-green">Tasks</a>
+<a href="/logout" class="button big-button button-black">Logout</a></p>
+<h1>Result</h1>
+<p th:text="'Title: ' + ${taskRequest.title}" />
+<p th:text="'Description: ' + ${taskRequest.description}" />
+<p th:text="'Task status: ' + ${statuses.get(taskRequest.getTaskStatusId()).getStatusName()}" />
+<p th:text="'Due time: ' + ${taskRequest.dueDateTime}" />
+</body>
+</html>

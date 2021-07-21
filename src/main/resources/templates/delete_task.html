@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete task</title>
+    <link rel="stylesheet" href="../static/css/main_styles.css" th:href="@{/css/main_styles.css}"/>
+</head>
+<body>
+<p><a href="/" class="button big-button button-red">Main page</a>
+<a href="/users" class="button big-button button-blue">Users</a>
+<a href="/tasks" class="button big-button button-green">Tasks</a>
+<a href="/logout" class="button big-button button-black">Logout</a></p>
+<h1>Delete</h1>
+<p th:text="'Title: ' + ${task.getTitle()}" />
+<p th:text="'Description: ' + ${task.getDescription()}" />
+<form name="test" method="post" action="#" th:action="@{/tasks/delete/{id}(id=${task.getId()})}">
+    <p><input type="submit" value="Удалить"></p>
+</form>
+</body>
+</html>
