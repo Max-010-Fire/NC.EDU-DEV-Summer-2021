@@ -1,9 +1,9 @@
 package max.springbootapp.port.adapter.controllers;
 
-import max.springbootapp.domain.model.entities.UserRoles;
-import max.springbootapp.domain.port.repositories.RolesRepository;
-import max.springbootapp.domain.port.repositories.UserRolesRepository;
-import max.springbootapp.domain.port.repositories.UsersRepository;
+import max.springbootapp.port.adapter.entities.UserRolesEntity;
+import max.springbootapp.port.adapter.dao.RolesRepository;
+import max.springbootapp.port.adapter.dao.UserRolesRepository;
+import max.springbootapp.port.adapter.dao.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +26,8 @@ public class UsersRestfulController {
     public String getAllUsers(Model model) {
         model.addAttribute("users", usersJpaRepository.findAll());
         HashMap<Long, ArrayList<Long>> userRoles = new HashMap<>();
-        List<UserRoles> userRolesAll = userRolesJpaRepository.findAll();
-        for (UserRoles ur: userRolesAll) {
+        List<UserRolesEntity> userRolesAll = userRolesJpaRepository.findAll();
+        for (UserRolesEntity ur: userRolesAll) {
             if (userRoles.containsKey(ur.getUserId())) {
                 userRoles.get(ur.getUserId()).add(ur.getRoleId());
             } else {

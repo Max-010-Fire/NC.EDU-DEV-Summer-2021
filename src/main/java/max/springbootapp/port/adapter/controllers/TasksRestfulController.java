@@ -1,11 +1,12 @@
 package max.springbootapp.port.adapter.controllers;
 
-import max.springbootapp.domain.model.entities.User;
-import max.springbootapp.port.adapter.requests.TaskRequest;
-import max.springbootapp.domain.model.entities.Task;
-import max.springbootapp.domain.port.repositories.StatusesRepository;
-import max.springbootapp.domain.port.repositories.TasksRepository;
-import max.springbootapp.domain.port.repositories.UsersRepository;
+import max.springbootapp.domain.model.responses.TaskResponse;
+import max.springbootapp.port.adapter.entities.UserEntity;
+import max.springbootapp.domain.model.requests.TaskRequest;
+import max.springbootapp.port.adapter.entities.TaskEntity;
+import max.springbootapp.port.adapter.dao.StatusesRepository;
+import max.springbootapp.port.adapter.dao.TasksRepository;
+import max.springbootapp.port.adapter.dao.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,16 +36,16 @@ public class TasksRestfulController {
                 .map(GrantedAuthority::getAuthority).collect(Collectors.toSet()).contains("ROLE_ADMIN")) {
             model.addAttribute("tasks", tasksJpaRepository.findAll());
         } else {
-            List<User> usersList = usersJpaRepository.findAll();
+            List<UserEntity> usersList = usersJpaRepository.findAll();
             String username = auth.getName();
             Long userId = null;
-            for (User user: usersList) {
+            for (UserEntity user: usersList) {
                 if (user.getName().equals(username)) {
                     userId = user.getId();
                 }
             }
-            List<Task> taskList = new ArrayList<>();
-            for (Task task : tasksJpaRepository.findAll()) {
+            List<TaskEntity> taskList = new ArrayList<>();
+            for (TaskEntity task : tasksJpaRepository.findAll()) {
                 if (task.getUserId()==userId) {
                     taskList.add(task);
                 }
@@ -76,7 +77,7 @@ public class TasksRestfulController {
         model.addAttribute("taskRequest", taskRequest);
         model.addAttribute("users", usersJpaRepository.findAll());
         model.addAttribute("statuses", statusesJpaRepository.findAll());
-        Task newTask = taskRequest.requestToTask();
+        TaskEntity newTask = taskRequest.requestToTask();
         tasksJpaRepository.saveAndFlush(newTask);
         return("result");
     }
@@ -96,8 +97,8 @@ public class TasksRestfulController {
 
     @GetMapping("/tasks/modify/{id}")
     public String getModifyTaskForm(@PathVariable String id, Model model) {
-        Task task = tasksJpaRepository.findById(Long.parseLong(id)).get();
-        model.addAttribute("taskRequest", TaskRequest.taskToTaskRequest(task));
+        TaskEntity task = tasksJpaRepository.findById(Long.parseLong(id)).get();
+        model.addAttribute("taskResponse", TaskResponse.taskToTaskResponse(task));
         model.addAttribute("task", task);
         model.addAttribute("users", usersJpaRepository.findAll());
         return("modify_task");
@@ -107,7 +108,7 @@ public class TasksRestfulController {
     public String modifyTask(@PathVariable String id, @ModelAttribute TaskRequest taskRequest, Model model) {
         model.addAttribute("taskRequest", taskRequest);
         model.addAttribute("statuses", statusesJpaRepository.findAll());
-        Task newTask = taskRequest.requestToTask();
+        TaskEntity newTask = taskRequest.requestToTask();
         newTask.setId(Long.parseLong(id));
         tasksJpaRepository.saveAndFlush(newTask);
         return("modify_complete");

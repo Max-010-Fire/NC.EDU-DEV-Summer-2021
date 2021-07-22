@@ -35,13 +35,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="SCSS File" />
         <option value="CSS File" />
-        <option value="Enum" />
         <option value="HTML File" />
         <option value="spring-beans.schema" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -82,6 +82,7 @@
       <recent name="C:\Users\Max\Desktop\BattleShips-master\NetCracker\SpringBootHelloWorld\src\main\resources\css" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="max.springbootapp.domain.model.requests" />
       <recent name="max.springbootapp.controllers" />
       <recent name="max.springbootapp.entities" />
       <recent name="max.springbootapp.repositories" />
@@ -168,6 +169,10 @@
       <workItem from="1626764702060" duration="17985000" />
       <workItem from="1626791369339" duration="6147000" />
       <workItem from="1626851570995" duration="50000" />
+      <workItem from="1626858661592" duration="528000" />
+      <workItem from="1626865416279" duration="8431000" />
+      <workItem from="1626937794384" duration="599000" />
+      <workItem from="1626958434746" duration="3164000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@
 <a href="/users" class="button big-button button-blue">Users</a>
 <a href="/tasks" class="button big-button button-green">Tasks</a>
 <a href="/logout" class="button big-button button-black">Logout</a></p>
-<form name="test" method="post" action="#" th:action="@{/tasks/modify/{id}(id=${task.getId()})}" th:object="${taskRequest}">
+<form name="test" method="post" action="#" th:action="@{/tasks/modify/{id}(id=${task.getId()})}" th:object="${taskResponse}">
     <p><b>User</b><br>
         <select size="2" multiple name="user[]" th:field="*{userId}">
             <option th:value="${user.getId()}" th:each="user, iterStat : ${users}"><td th:text="${user.getName()}"></td></option>
